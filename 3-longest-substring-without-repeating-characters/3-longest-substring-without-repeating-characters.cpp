@@ -5,19 +5,17 @@ public:
         if(n<=1)return n;
         
         unordered_map<char, int> mp;
-        int ans = 0, j = 0, i = 0;
+        int ans = 1, j = 0;
         
-        for(int j=0; j<s.size(); ){
-            mp[s[j]]++;
-            if(mp[s[j]]==1)ans = max(ans, (j-i)+1);
-            else{
-                while(s[i]!=s[j]){
-                    mp[s[i++]]--;
-                }
-                
-                mp[s[i++]]--;
+        for(int i=0; i<s.size(); i++){
+            
+            if(mp.count(s[i])){
+                j = max(mp[s[i]]+1, j);
+                mp[s[i]] = i;
+            }else{
+                mp[s[i]] = i;
             }
-            j++;
+            ans = max(ans, i - j + 1);
         }
         return ans;
     }
