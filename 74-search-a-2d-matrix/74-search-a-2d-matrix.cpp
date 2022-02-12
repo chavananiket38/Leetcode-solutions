@@ -5,7 +5,7 @@ public:
         int n = matrix[0].size();
         int x = 0;
         int y = n-1;
-        while((x<m and x>=0) and (y<n and y>=0)){
+        while(x>=0 and x<m and y>=0 and y<n){
             if(matrix[x][y]==target)
                 return true;
             else if(matrix[x][y]<target)
