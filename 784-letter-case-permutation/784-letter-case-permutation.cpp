@@ -8,23 +8,13 @@ public:
             return;
         }
         
-        if(s[i]>64 && s[i]<91){
-            char a = s[i]+32;
-            s[i] = a;
-        }else if(s[i]>96 && s[i]<123){
-            char a = s[i]-32;
-            s[i] = a;
-        }
+        if(s[i]>64 && s[i]<123)
+            s[i] ^= 32;
         
         helper(s, i+1, end);
         
-        if(s[i]>64 && s[i]<91){
-            char a = s[i]+32;
-            s[i] = a;
-        }else if(s[i]>96 && s[i]<123){
-            char a = s[i]-32;
-            s[i] = a;
-        }
+        if(s[i]>64 && s[i]<123)
+            s[i] ^= 32;
         
         helper(s, i+1, end);
         return ;
