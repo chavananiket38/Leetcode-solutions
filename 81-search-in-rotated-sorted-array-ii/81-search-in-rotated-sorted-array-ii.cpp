@@ -1,9 +1,10 @@
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
-        int cnt = count(nums.begin(), nums.end(), target);
+        for(auto i:nums){
+            if(i==target)return true;
+        }
         
-        if(cnt)return true;
-        else return false;
+        return false;
     }
 };
