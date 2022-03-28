@@ -5,7 +5,6 @@ public:
         int end = nums.size()-1;
         
         while(start<=end){
-            
             int mid = start + (end-start)/2;
             
             if(nums[mid]==target)
@@ -15,6 +14,7 @@ public:
                 start++;
                 end--;
             }
+            
             else if(nums[start]<=nums[mid]){
                 if(target<nums[mid] && target>=nums[start])
                     end = mid-1;
@@ -23,7 +23,7 @@ public:
             }else{
                 if(target>nums[mid] && nums[end]>=target)
                     start = mid+1;
-                else 
+                else
                     end = mid-1;
             }
         }
