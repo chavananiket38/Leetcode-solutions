@@ -1,42 +1,34 @@
 class Solution {
 public:
     bool validPalindrome(string s) {
-        int start = 0;
-        int end = s.size()-1;
         
-        bool ans1 = true;
-        int pass = 0;
+        int start = 0, end = s.size()-1;
+        
+        int cnt1 = 0;
         while(start<=end){
-            if(s[start]!=s[end] && pass==0){
-                start++;
-                pass++;
-            }else if(s[start]!=s[end] && pass==1){
-                ans1 = false;
-                break;
-            }else{
+            if(s[start]==s[end]){
                 start++;
                 end--;
+            }else{
+                start++;
+                cnt1++;;
             }
         }
         
-        start = 0;
-        end = s.size()-1;
-        pass = 0;
-        bool ans2 = true;
+        start = 0, end = s.size()-1;
+        int cnt2 = 0;
         while(start<=end){
-            if(s[start]!=s[end] && pass==0){
-                end--;
-                pass++;
-            }else if(s[start]!=s[end] && pass==1){
-                ans2 = false;
-                break;
-            }else{
+            if(s[start]==s[end]){
                 start++;
                 end--;
+            }else{
+                end--;
+                cnt2++;
             }
         }
         
         
-        return ans1 || ans2;
+        if(cnt1==0 || cnt2==0 || cnt1==1 || cnt2==1) return true;
+        else return false;
     }
 };
