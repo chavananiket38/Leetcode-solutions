@@ -4,16 +4,17 @@ public:
         sort(nums.begin(), nums.end());
         
         int cnt = 0;
-        int i = 0;
-        int j = nums.size()-1;
+        int start = 0, end = nums.size()-1;
         
-        while(i<j){
-            if(nums[i]+nums[j]==k){
+        while(start<end){
+            if(nums[start]+nums[end]==k){
                 cnt++;
-                j--;
-                i++;
-            }else if(nums[i]+nums[j]>k)j--;
-            else i++;
+                start++;
+                end--;
+            }
+            else if(nums[start]+nums[end]>k)
+                end--;
+            else start++;
         }
         
         return cnt;
