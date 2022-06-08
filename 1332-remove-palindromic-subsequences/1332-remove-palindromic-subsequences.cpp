@@ -6,14 +6,11 @@ public:
             return 0;
         
         int i=0, j=n-1;
-        bool isPalindrome = true;
         while(i<j){
             if(s[i++]!=s[j--])
-                isPalindrome = false;
+                return 2;
         }
         
-        if(isPalindrome==true)
-            return 1;
-        else return 2;
+        return 1;
     }
 };
