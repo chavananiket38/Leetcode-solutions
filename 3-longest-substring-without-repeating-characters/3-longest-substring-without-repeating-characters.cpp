@@ -9,12 +9,9 @@ public:
         
         for(int i=0; i<s.size(); i++){
             
-            if(mp.count(s[i])){
+            if(mp.count(s[i]))
                 j = max(mp[s[i]]+1, j);
-                mp[s[i]] = i;
-            }else{
-                mp[s[i]] = i;
-            }
+            mp[s[i]] = i;
             ans = max(ans, i - j + 1);
         }
         return ans;
