@@ -8,9 +8,12 @@ public:
         int res = 0;
         grid[i][j] = 0;
         
-        res = 1+helper(grid, i+1, j)+helper(grid, i-1, j)+helper(grid, i,j+1)+helper(grid,i,j-1);
+        for(int k=0; k<4; k++){
+            int x = i+dir[k], y = j+dir[k+1];
+            res += helper(grid, x, y);
+        }
         
-        return res;
+        return res+1;
     }
     
     int maxAreaOfIsland(vector<vector<int>>& grid) {
