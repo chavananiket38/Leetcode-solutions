@@ -1,15 +1,17 @@
 class Solution {
+    vector<int> vis;
+    vector<int> currVis;
+    vector<vector<int>> graph;
+    
 public:
-    
-    
-    bool isCycle(vector<vector<int>> &graph, int i, vector<int> &vis, vector<int> &currVis){
+    bool isCycle(int i){
         vis[i]=1;
         currVis[i]=1;
         
         
         for(auto k:graph[i]){
             if(vis[k]==0){
-                if(isCycle(graph, k, vis, currVis))
+                if(isCycle(k))
                     return true;
             }else if(currVis[k]==1)
                 return true;
@@ -22,19 +24,19 @@ public:
     bool canFinish(int numCourses, vector<vector<int>>& pre) {
         int n = pre.size();
         
-        vector<vector<int>> graph(numCourses);
+        graph.resize(numCourses);
         
         for(int i=0; i<n; i++){
             graph[pre[i][1]].push_back(pre[i][0]);
         }
         
         
-        vector<int> vis(numCourses, 0);
-        vector<int> currVis(numCourses, 0);
+        vis.resize(numCourses, 0);
+        currVis.resize(numCourses, 0);
         
         for(int i=0; i<numCourses; i++){
             if(vis[i]==0)
-                if(isCycle(graph, i, vis, currVis))
+                if(isCycle(i))
                     return false;
         }
         
