@@ -1,8 +1,7 @@
 class Solution {
 public:
     
-    vector<int> vis;
-    vector<int> currVis;
+    
     bool isCycle(vector<vector<int>> &graph, int i, vector<int> &vis, vector<int> &currVis){
         vis[i]=1;
         currVis[i]=1;
@@ -30,8 +29,8 @@ public:
         }
         
         
-        vis.resize(numCourses, 0);
-        currVis.resize(numCourses, 0);
+        vector<int> vis(numCourses, 0);
+        vector<int> currVis(numCourses, 0);
         
         for(int i=0; i<numCourses; i++){
             if(vis[i]==0)
