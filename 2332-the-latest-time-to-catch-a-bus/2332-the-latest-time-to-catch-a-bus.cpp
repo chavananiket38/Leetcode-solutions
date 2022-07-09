@@ -37,7 +37,7 @@ public:
             }
         }
         
-        cout<<lastBus<<" "<<lastPass<<" "<<lastCap;
+        
         int ans;
         if(!bus.empty()){
             return bus.top();
