@@ -1,35 +1,36 @@
 class Solution {
 public:
-    bool canTransform(string start, string end) {
-        queue<pair<char, int>> ls, rs;
+    bool canTransform(string start, string target) {
+        queue<pair<char, int>> lhs, rhs;
         
         for(int i=0; i<start.size(); i++){
             if(start[i]!='X')
-                ls.push({start[i], i});
+                lhs.push({start[i], i});
         }
         
-        
-        for(int i=0; i<end.size(); i++){
-            if(end[i]!='X')
-                rs.push({end[i], i});
+        for(int i=0; i<target.size(); i++){
+            if(target[i]!='X')
+                rhs.push({target[i], i});
         }
         
-        if(ls.size()!=rs.size())
+        if(lhs.size()!=rhs.size())
             return false;
         
-        while(!ls.empty()){
-            pair<char, int> s, e;
-            s = ls.front();
-            e = rs.front();
-            ls.pop();
-            rs.pop();
+        while(!lhs.empty()){
+            pair<char, int> lt, rt;
             
-            if(s.first!=e.first)
+            lt = lhs.front();
+            rt = rhs.front();
+            
+            lhs.pop();
+            rhs.pop();
+            if(lt.first!=rt.first)
                 return false;
-            else if(s.first=='L' && s.second<e.second)
+            else if(lt.first=='L' && lt.second<rt.second)
                 return false;
-            else if(s.first=='R' && s.second>e.second)
+            else if(lt.first=='R' && lt.second>rt.second)
                 return false;
+            
         }
         
         return true;
