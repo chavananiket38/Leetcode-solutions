@@ -1,6 +1,7 @@
 class Solution {
 public:
-    bool checkCycle(int node, vector<vector<int>> &adj, vector<int> &vis, vector<int> &dfsVis) {
+    bool checkCycle(int node, vector<vector<int>> &adj, vector<int> &vis,
+                    vector<int> &dfsVis) {
         vis[node] = 1;
         dfsVis[node] = 1;
         for (auto it: adj[node]) {
@@ -25,10 +26,9 @@ public:
         st.push(node);
     }
     
-    vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions, vector<vector<int>>& colConditions) {
-        vector<vector<int>> res(k, vector<int> (k, 0));
+    vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions,
+                                    vector<vector<int>>& colConditions) {
         
-        stack<int> row;
         vector<int> vis(k+1, 0), dfsVis(k+1 ,0);
         vector<vector<int>> edges(k+1);
         for(auto i:rowConditions){
@@ -54,8 +54,7 @@ public:
             st.pop();
         }
         
-        
-        
+        ////////////////////////////////////////////////////
         
         vector<vector<int>> edge(k+1);
         for(auto i:colConditions){
@@ -73,6 +72,7 @@ public:
             if(vis[i]==0)
                 toposort(i, edge, vis, st);
         }
+        
         j=0;
         while(!st.empty()){
             vertex[st.top()].push_back(j);
@@ -80,6 +80,8 @@ public:
             st.pop();
         }
         
+        //////////////////////////////////////
+        vector<vector<int>> res(k, vector<int> (k, 0));
         for(int i=1; i<vertex.size(); i++){
             res[vertex[i][0]][vertex[i][1]] = i;
         }
