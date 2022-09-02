@@ -3,7 +3,9 @@ public:
     int mod = 1e9 + 7;
     
     int countNicePairs(vector<int>& nums) {
-        map<int, long long> mp;
+        
+        map<int, int> mp;
+        long long ans = 0;   
         
         for(int i=0; i<nums.size(); i++){
             string s = to_string(nums[i]);
@@ -11,12 +13,13 @@ public:
             stringstream geek(s);
             int k = 0;
             geek>>k;
+            
+            if(mp.count(k-nums[i]))
+                ans += (mp[k-nums[i]]) % mod;
+            
             mp[k-nums[i]]++;
         }
-        int ans = 0;
-        for(auto i:mp)
-            if(i.second>1)
-                ans += ((i.second*(i.second-1))/2) % mod;
+        
         return ans % mod;
     }
 };
