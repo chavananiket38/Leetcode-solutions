@@ -15,7 +15,7 @@ public:
     }
     
     int numberOfWays(int startPos, int endPos, int k) {
-        dp.resize(3001, vector<int>(3001, -1));
+        dp.resize(k+1, vector<int>(3001, -1));
         return helper(startPos, endPos, k) % mod;    
     }
 };
