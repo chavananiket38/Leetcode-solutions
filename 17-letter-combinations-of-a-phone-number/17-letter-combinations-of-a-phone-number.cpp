@@ -1,38 +1,30 @@
 class Solution {
 public:
+    unordered_map<char, string> mp = {{'2', "abc"}, {'3', "def"}, {'4', "ghi"},
+                                      {'5', "jkl"}, {'6', "mno"}, {'7', "pqrs"}, 
+                                      {'8', "tuv"}, {'9', "wxyz"}};
+    vector<string> ans;
     
-    void combination(string &digits, int start, unordered_map<char, string> &mp, 
-                     vector<string> &ans, string combi){
-        if(combi.size()==digits.size()){
-            ans.push_back(combi);
+    void helper(int n, int i, string &digits, string curr){
+        if(curr.size()==n){
+            ans.push_back(curr);
             return;
         }
         
-        string curr = mp[digits[start]];
+        string temp = mp[digits[i]];
         
-        for(int i=0; i<curr.size(); i++){
-            combination(digits, start+1, mp, ans, combi+curr[i]);
+        for(int k=0; k<temp.size(); k++){
+            helper(n, i+1, digits, curr + temp[k]);
         }
     }
     
+    
     vector<string> letterCombinations(string digits) {
-        vector<string> ans;
-        string combi = "";
-        
-        if(digits == "")
+        int n = digits.size();
+        if(n==0)
             return ans;
         
-        unordered_map<char, string> mp;
-        mp['2'] = "abc";
-        mp['3'] = "def";
-        mp['4'] = "ghi";
-        mp['5'] = "jkl";
-        mp['6'] = "mno";
-        mp['7'] = "pqrs";
-        mp['8'] = "tuv";
-        mp['9'] = "wxyz";
-        
-        combination(digits, 0, mp, ans, combi);
+        helper(n, 0, digits, "");
         return ans;
     }
 };
